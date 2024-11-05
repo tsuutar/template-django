@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>app</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app/css/base.css' %}" />
+    <script src="{% static 'app/js/base.js' %}"></script>
+  </head>
+  <body>
+    {% if user.username %}
+    <p>{{ user.username }}さん、こんにちは。</p>
+    <form action="{% url 'accounts:logout' %}" method="post">
+      {%csrf_token%}
+      <button type="submit">Logout</button>
+    </form>
+    {% endif %}
+    <!-- main -->
+    {% block body %} {% endblock %}
+  </body>
+</html>
